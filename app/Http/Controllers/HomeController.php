@@ -12,6 +12,6 @@ class HomeController extends Controller
     public function index(){
         $experiences = Experience::all();
         $projects = Project::all();
-        return view('home', compact('experiences','projects'));
+        return view('landing-page.index', compact('experiences','projects'));
     }
 }
