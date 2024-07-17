@@ -18,7 +18,7 @@
 								<div class="text-gray-500 fw-semibold fs-6" data-kt-translate="general-desc">Masuk akses admin kihub website</div>
 							</div>
 							<div class="fv-row mb-8">
-								<input type="email" placeholder="Leboke Email..." name="email" autocomplete="off" data-kt-translate="sign-in-input-email" class="form-control form-control-solid" />
+								<input type="email" placeholder="Leboke Email..." name="email" autocomplete="off" data-kt-translate="sign-in-input-email" class="form-control form-control-solid" value="{{old('email','')}}" />
 							</div>
 							<div class="fv-row mb-7">
 								<input type="password" placeholder="Leboke Password..." name="password" autocomplete="off" data-kt-translate="sign-in-input-password" class="form-control form-control-solid" />

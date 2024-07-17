@@ -25,7 +25,8 @@ class DatabaseSeeder extends Seeder
 
         $this->call([
             ExperienceSeeder::class,
-            ProjectSeeder::class
+            ProjectSeeder::class,
+            SocialMediaSeeder::class,
         ]);
     }
 }

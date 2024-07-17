@@ -68,6 +68,7 @@ class ExperienceSeeder extends Seeder
 
         foreach ($experiences as $index => $experience) {
             Experience::create([
+                'user_id' => 1,
                 'job_name' => $experience['job_name'],
                 'company_name' => $experience['company_name'],
                 'month_start' => $experience['month_start'],

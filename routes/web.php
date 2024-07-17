@@ -22,6 +22,7 @@ Route::controller(HomeController::class)->group(function () {
 Route::controller(AdminController::class)->group(function () {
     Route::get('/login','login')->name('login');
     Route::post('/login','auth')->name('auth');
+    Route::get('/logout', 'logout')->name('logout');
     Route::middleware('auth')->group(function(){
         Route::get('/dashboard','dashboard')->name('dashboard');
         Route::get('/personal-identity','showPersonalIdentity')->name('personal_identity');

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\SocialMedia;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -33,8 +34,15 @@ class AdminController extends Controller
     }
 
     public function dashboard(){
-        return view('admin.dashboard');
+        $user = Auth::user()->load('socialMedias', 'experiences');
+        $experiences = $user->experiences->groupBy('company_name')->map(function ($group) {
+            return ['company_name' => $group->first()->company_name, 'count' => $group->count()];
+        });
+
+        return view('admin.dashboard', compact('user','experiences'));
+
     }
+
 
     public function showPersonalIdentity(){
         return view('admin.personal-identity');
