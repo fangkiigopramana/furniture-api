@@ -62,7 +62,7 @@ class ExperienceSeeder extends Seeder
                 'month_start' => '2024-02-01',
                 'month_end' => '2024-06-01',
                 'company_photo' => "https://media.licdn.com/dms/image/C560BAQFnyUwWm1LDKA/company-logo_200_200/0/1648799905094/pt_adma_digital_solusi_logo?e=1723680000&v=beta&t=u6HpIFgiY0JWeCB0f99bMuWrFkjPd7r2gcTYkuVGAZw",
-                'describe' => "Development of a financial management system for the Admin website using Laravel and MySQL|Collaborate with backend engineers for database integration|Collaborate using Gitlab"
+                'describe' => "Apply the Agile method in software development|Convert the page that has been created by the UI/UX designer into PHP program code using the Laravel framework|Integrating the database that has been created by the backend developer into the financing management website|Collaborating with other developers in developing the financing management website using GitLab|Optimising the performance and efficiency of the website program code using the Laravel Debugbar tool|Maintain and test the program code that has been created using PHPUnit and those available in Laravel."
             )
         );
 
