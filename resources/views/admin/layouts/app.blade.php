@@ -24,8 +24,6 @@
 				@auth()
 				@include('admin.partials.header')
 				@endauth
-				<!--end::Header-->
-				<!--begin::Wrapper-->
 				@auth()
 				<div class="app-wrapper flex-column flex-row-fluid" id="kt_app_wrapper">
 					@include('admin.partials.sidebar-admin')
@@ -33,30 +31,21 @@
 					<div class="app-main flex-column flex-row-fluid" id="kt_app_main">
 						@yield('content')
 					</div>
+					<!--end::Main-->
 				</div>
 				@endauth
 				@yield('content')
-				<!--end::Wrapper-->
 			</div>
-			<!--end::Page-->
 		</div>
-		<!--end::App-->
-		<!--begin::Scrolltop-->
 		<div id="kt_scrolltop" class="scrolltop" data-kt-scrolltop="true">
 			<i class="ki-duotone ki-arrow-up">
 				<span class="path1"></span>
 				<span class="path2"></span>
 			</i>
 		</div>
-		<!--end::Scrolltop-->
-		<!--end::Modals-->
         @include('sweetalert::alert')
-		<!--begin::Global Javascript Bundle(mandatory for all pages)-->
 		<script src="{{asset('admin/plugins/global/plugins.bundle.js')}}"></script>
 		<script src="{{asset('admin/js/scripts.bundle.js')}}"></script>
-		<!--end::Global Javascript Bundle-->
 		@stack('script')
-		<!--end::Javascript-->
 	</body>
-	<!--end::Body-->
 </html>
