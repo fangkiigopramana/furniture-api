@@ -6,10 +6,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Contracts\Auth\CanResetPassword as ContractCanResetPassword;
+use Illuminate\Auth\Passwords\CanResetPassword as CanResetPassword;
 
-class User extends Authenticatable
+class User extends Authenticatable implements ContractCanResetPassword
 {
-    use HasFactory, Notifiable;
+    use HasFactory, Notifiable, CanResetPassword;
 
     /**
      * The attributes that are mass assignable.
@@ -50,8 +52,6 @@ class User extends Authenticatable
     }
 
     public function experiences(){
-// Suggested code may be subject to a license. Learn more: ~LicenseLog:236422373.
-// Suggested code may be subject to a license. Learn more: ~LicenseLog:853644040.
         return $this->hasMany(Experience::class);
     }
 }

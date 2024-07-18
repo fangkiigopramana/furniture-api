@@ -21,10 +21,15 @@ Route::controller(HomeController::class)->group(function () {
 });
 
 Route::controller(AdminController::class)->group(function () {
-    Route::get('/login','login')->name('login');
-    Route::post('/login','auth')->name('auth');
-    Route::get('/logout', 'logout')->name('logout');
+    Route::middleware('guest')->group(function(){
+        Route::get('/login','login')->name('login');
+        Route::post('/login','auth')->name('auth');
+        Route::get('/forgot-password','passwordRequest')->name('password.request');
+        Route::post('/forgot-password', 'passwordSendEmail')->name('password.email');
+        Route::get('/reset-password/{token}', 'passwordReset')->middleware('guest')->name('password.reset');
+    });
     Route::middleware('auth')->group(function(){
+        Route::get('/logout', 'logout')->name('logout');
         Route::get('/dashboard','dashboard')->name('dashboard');
         Route::get('/personal-identity','showPersonalIdentity')->name('personal_identity');
     });

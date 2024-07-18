@@ -18,14 +18,17 @@
 								<div class="text-gray-500 fw-semibold fs-6" data-kt-translate="general-desc">Masuk akses admin kihub website</div>
 							</div>
 							<div class="fv-row mb-8">
-								<input type="email" placeholder="Leboke Email..." name="email" autocomplete="off" data-kt-translate="sign-in-input-email" class="form-control form-control-solid" value="{{old('email','')}}" />
+								<input type="email" placeholder="Masukkan Email..." name="email" autocomplete="off" data-kt-translate="sign-in-input-email" class="form-control form-control-solid" value="{{old('email','')}}" required />
 							</div>
-							<div class="fv-row mb-7">
-								<input type="password" placeholder="Leboke Password..." name="password" autocomplete="off" data-kt-translate="sign-in-input-password" class="form-control form-control-solid" />
+							<div class="fv-row mb-7 position-relative">
+								<input type="password" id="password" placeholder="Masukkan Password..." name="password" autocomplete="off" data-kt-translate="sign-in-input-password" class="form-control form-control-solid pr-10" required />
+								<span class="btn btn-sm btn-icon position-absolute end-0 top-0 mt-2 me-2" onclick="togglePasswordVisibility()">
+									<i class="ki-solid ki-eye-slash fs-2x" id="togglePasswordIcon"></i>
+								</span>
 							</div>
 							<div class="d-flex flex-stack flex-wrap gap-3 fs-base fw-semibold mb-10">
 								<div></div>
-								<a href="#" class="link-primary" data-kt-translate="sign-in-forgot-password">Forgot Password ?</a>
+								<a href="{{route('password.request')}}" class="link-primary" data-kt-translate="sign-in-forgot-password">Forgot Password ?</a>
 							</div>
 							<div class="d-flex flex-stack">
 								<button class="btn btn-primary me-2 flex-shrink-0">
@@ -53,4 +56,20 @@
 <script src="{{asset('admin/js/scripts.bundle.js')}}"></script>
 <script src="{{asset('admin/js/custom/authentication/sign-in/general.js')}}"></script>
 <script src="{{asset('admin/js/custom/authentication/sign-in/i18n.js')}}"></script>
+<script>
+	function togglePasswordVisibility() {
+		var passwordInput = document.getElementById('password');
+		var togglePasswordIcon = document.getElementById('togglePasswordIcon');
+
+		if (passwordInput.type === 'password') {
+			passwordInput.type = 'text';
+			togglePasswordIcon.classList.remove('ki-eye-slash');
+			togglePasswordIcon.classList.add('ki-eye');
+		} else {
+			passwordInput.type = 'password';
+			togglePasswordIcon.classList.remove('ki-eye');
+			togglePasswordIcon.classList.add('ki-eye-slash');
+		}
+	}
+</script>
 @endpush
