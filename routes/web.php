@@ -1,8 +1,9 @@
 <?php
 
-use App\Http\Controllers\AdminController;
-use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
+use RealRashid\SweetAlert\Facades\Alert;
+use App\Http\Controllers\AdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,4 +30,6 @@ Route::controller(AdminController::class)->group(function () {
     });
 });
 
-Route::view('/coba','coba-dropzone');
+Route::get('/coba', function(){
+    return redirect()->back();
+});

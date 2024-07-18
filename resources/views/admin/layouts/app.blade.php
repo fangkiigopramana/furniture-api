@@ -43,9 +43,9 @@
 				<span class="path2"></span>
 			</i>
 		</div>
-        @include('sweetalert::alert')
 		<script src="{{asset('admin/plugins/global/plugins.bundle.js')}}"></script>
 		<script src="{{asset('admin/js/scripts.bundle.js')}}"></script>
 		@stack('script')
+		@include('sweetalert::alert')
 	</body>
 </html>

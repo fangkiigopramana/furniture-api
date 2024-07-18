@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\SocialMedia;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class AdminController extends Controller
 {
@@ -21,16 +23,17 @@ class AdminController extends Controller
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-            return redirect()->intended(route('dashboard'))->with('success', 'Selamat Datang');
+            Alert::success('Berhasil Masuk', 'Selamat Datang ' . Auth::user()->name . '!!');
+            return redirect()->intended(route('dashboard'));
         }
-        return back()->withErrors([
-            'error' => 'Kredensial tidak valid atau pengguna tidak ditemukan.',
-        ])->withInput();
+        Alert::error('Gagal Login',  'Email atau password salah');
+        return redirect()->back()->withInput($request->except('password'));
     }
 
     public function logout(){
         Auth::logout();
-        return redirect()->route('login')->with('logoutSuccess', "Berhasil keluar, silahkan masuk kembali!");
+        Alert::success('Berhasil Keluar', 'Silahkan Login Kembali');
+        return redirect()->route('login');
     }
 
     public function dashboard(){
@@ -38,7 +41,6 @@ class AdminController extends Controller
         $experiences = $user->experiences->groupBy('company_name')->map(function ($group) {
             return ['company_name' => $group->first()->company_name, 'count' => $group->count()];
         });
-
         return view('admin.dashboard', compact('user','experiences'));
 
     }
