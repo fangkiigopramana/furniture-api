@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use RealRashid\SweetAlert\Facades\Alert;
-use App\Http\Controllers\AdminController;
+use App\Http\Controllers\FurniStoreController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,21 +20,10 @@ Route::controller(HomeController::class)->group(function () {
     Route::get('/','index')->name('home');
 });
 
-Route::controller(AdminController::class)->group(function () {
-    Route::middleware('guest')->group(function(){
-        Route::get('/login','login')->name('login');
-        Route::post('/login','auth')->name('auth');
-        Route::get('/forgot-password','passwordRequest')->name('password.request');
-        Route::post('/forgot-password', 'passwordSendEmail')->name('password.email');
-        Route::get('/reset-password/{token}', 'passwordReset')->middleware('guest')->name('password.reset');
+Route::prefix('project')->group(function (){
+    Route::prefix('furni-store')->group(function (){
+        Route::controller(FurniStoreController::class)->group(function (){
+            Route::get('/','home')->name('furni.home');
+        });
     });
-    Route::middleware('auth')->group(function(){
-        Route::get('/logout', 'logout')->name('logout');
-        Route::get('/dashboard','dashboard')->name('dashboard');
-        Route::get('/personal-identity','showPersonalIdentity')->name('personal_identity');
-    });
-});
-
-Route::get('/coba', function(){
-    return redirect()->back();
 });

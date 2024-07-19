@@ -27,6 +27,7 @@ return [
     */
 
     'env' => env('APP_ENV', 'production'),
+    'furni_api_url'=> env('FURNI_API_URL'),
 
     /*
     |--------------------------------------------------------------------------
