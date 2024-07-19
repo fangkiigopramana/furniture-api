@@ -35,6 +35,13 @@ class ProjectSeeder extends Seeder
                 'thumbnail' => 'https://themewagon.com/wp-content/uploads/2020/09/aznews-1.jpg',
                 'link_demo' => 'https://news-portal-web.000webhostapp.com/'
             ),
+            array(
+                'name' => "Furni Store",
+                'tools' => "Laravel, Furnitur API",
+                'describe' => "A furniture store project entails developing an e-commerce platform or physical store to sell furniture products",
+                'thumbnail' => 'https://themewagon.com/wp-content/uploads/2023/08/furni.png',
+                'link_demo' => route('furni.home')
+            ),
         );
 
         foreach ($projects as $index => $project) {
