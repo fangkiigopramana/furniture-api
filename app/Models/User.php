@@ -2,16 +2,14 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Contracts\Auth\CanResetPassword as ContractCanResetPassword;
-use Illuminate\Auth\Passwords\CanResetPassword as CanResetPassword;
+use Spatie\Permission\Traits\HasRoles;
 
-class User extends Authenticatable implements ContractCanResetPassword
+class User extends Authenticatable
 {
-    use HasFactory, Notifiable, CanResetPassword;
+    use HasFactory, Notifiable, HasRoles;
 
     /**
      * The attributes that are mass assignable.

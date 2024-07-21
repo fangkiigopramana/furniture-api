@@ -14,7 +14,6 @@ return new class extends Migration
     {
         Schema::create('experiences', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->string('job_name');
             $table->string('company_name');
             $table->date('month_start');

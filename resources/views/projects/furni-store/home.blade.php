@@ -1,4 +1,8 @@
 @extends('projects.furni-store.layouts.app')
+@section('style')
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+
+@endsection
 @section('content')
 <!-- Start Hero Section -->
 <div class="hero">
@@ -37,10 +41,14 @@
             <!-- Start Column-->
             @foreach ($best_products as $product )
             <div class="col-12 col-md-4 col-lg-3 mb-5 mb-md-0">
-                <a class="product-item" href="cart.html">
+                <a class="product-item" href="javascript:void(0);">
                     <img src="{{$product['img_link']}}" class="img-fluid product-thumbnail">
                     <h3 class="product-title">{{$product['name']}}</h3>
                     <strong class="product-price">{{'Rp '.number_format($product['price'],0,'.','.')}}</strong>
+
+                    <span class="icon-cross">
+                        <img src="{{asset('furni-store/images/cross.svg')}}" class="img-fluid">
+                    </span>
                 </a>
             </div> 
             @endforeach

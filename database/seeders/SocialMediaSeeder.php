@@ -15,17 +15,14 @@ class SocialMediaSeeder extends Seeder
     {
         $social_medias = [
             [
-                'user_id' => 1,
                 'name' => 'Instagram',
                 'link' => 'https://www.instagram.com/fangki_ip/',
             ],
             [
-                'user_id' => 1,
                 'name' => 'Github',
                 'link' => 'https://github.com/fangkiigopramana',
             ],
             [
-                'user_id' => 1,
                 'name' => 'Linkedin',
                 'link' => 'https://www.linkedin.com/in/fangkiigopramana',
             ],

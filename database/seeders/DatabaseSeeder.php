@@ -16,17 +16,17 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-
-        User::create([
-            'name' => 'Fangki',
-            'email' => 'fangkiigo13@gmail.com',
-            'password' => Hash::make('password'),
-        ]);
-
         $this->call([
+            //Landing Page Seeder
             ExperienceSeeder::class,
             ProjectSeeder::class,
             SocialMediaSeeder::class,
+
+            //Furni Project Seeder
+            PermissionSeeder::class,
+            RoleSeeder::class,
+            AssignPermissionSeeder::class,
+            UserSeeder::class,
         ]);
     }
 }

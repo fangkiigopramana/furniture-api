@@ -8,7 +8,9 @@
         "php": "^8.2",
         "guzzlehttp/guzzle": "^7.8",
         "laravel/framework": "^11.0",
-        "laravel/tinker": "^2.9"
+        "laravel/tinker": "^2.9",
+        "realrashid/sweet-alert": "^7.2",
+        "spatie/laravel-permission": "^6.9"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.13",
