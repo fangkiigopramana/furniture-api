@@ -9,8 +9,8 @@
 
         <div class="collapse navbar-collapse" id="navbarsFurni">
             <ul class="custom-navbar-nav navbar-nav ms-auto mb-2 mb-md-0">
-                <li class="nav-item @if (Route::currentRouteName() === "furni.home") active @endif">
-                    <a class="nav-link" href="{{route('furni.home')}}">Home</a>
+                <li class="nav-item @if (Route::currentRouteName() === "home") active @endif">
+                    <a class="nav-link" href="{{route('home')}}">Home</a>
                 </li>
                 <li><a class="nav-link" href="#">Shop</a></li>
                 <li><a class="nav-link" href="#">About us</a></li>
