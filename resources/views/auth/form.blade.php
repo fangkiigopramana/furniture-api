@@ -1,4 +1,4 @@
-@extends("projects.furni-store.layouts.app")
+@extends("layouts.app")
 @section("content")
     <main class="container w-50 px-8 pt-6 m-auto">
         <form class="py-5" method="post" action="{{Route::currentRouteName() === "login" ? route('login.validate') : route('register.store')}}">

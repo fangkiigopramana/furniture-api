@@ -28,13 +28,13 @@
 	<body>
 
 		<!-- Start Header/Navigation -->
-		@include('projects.furni-store.partials.navbar')
+		@include('partials.navbar')
 		<!-- End Header/Navigation -->
 
 		@yield('content')
 
 		<!-- Start Footer Section -->
-		@include('projects.furni-store.partials.footer')
+		@include('partials.footer')
 		<!-- End Footer Section -->	
 
 
