@@ -14,7 +14,7 @@ use RealRashid\SweetAlert\Facades\Alert;
 class AuthController extends Controller
 {
     public function form(){
-        return view('projects.furni-store.auth.form');
+        return view('auth.form');
     }
 
     public function validate(Request $request){
@@ -55,16 +55,13 @@ class AuthController extends Controller
         Auth::login($user);    
         $request->session()->regenerate();
         Alert::success('Registration Successful', 'Welcome');
-        
         return redirect()->route('furni.home');
     }
     
     public function logout(){
         Auth::logout();
         Alert::success('Logout Successful', 'See you again');
-        
         return redirect()->route('login');
-
     }
 
 }

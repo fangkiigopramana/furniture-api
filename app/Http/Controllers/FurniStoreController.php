@@ -13,7 +13,7 @@ class FurniStoreController extends Controller
         $types = $furniApiService->getAllType();
         $best_products = $furniApiService->getThreeBestProducts();
 
-        return view('projects.furni-store.home',compact('products','types','best_products'));
+        return view('home',compact('products','types','best_products'));
     }
 
 }
