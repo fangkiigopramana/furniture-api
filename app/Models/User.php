@@ -44,12 +44,4 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
-
-    public function socialMedias(){
-        return $this->hasMany(SocialMedia::class);
-    }
-
-    public function experiences(){
-        return $this->hasMany(Experience::class);
-    }
 }
