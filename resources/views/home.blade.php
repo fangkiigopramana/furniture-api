@@ -17,7 +17,7 @@
             </div>
             <div class="col-lg-7">
                 <div class="hero-img-wrap">
-                    <img src="{{asset('furni-store/images/couch.png')}}" class="img-fluid">
+                    <img src="{{asset('images/couch.png')}}" class="img-fluid">
                 </div>
             </div>
         </div>
@@ -47,7 +47,7 @@
                     <strong class="product-price">{{'Rp '.number_format($product['price'],0,'.','.')}}</strong>
 
                     <span class="icon-cross">
-                        <img src="{{asset('furni-store/images/cross.svg')}}" class="img-fluid">
+                        <img src="{{asset('images/cross.svg')}}" class="img-fluid">
                     </span>
                 </a>
             </div> 
@@ -71,7 +71,7 @@
                     <div class="col-6 col-md-6">
                         <div class="feature">
                             <div class="icon">
-                                <img src="{{asset('furni-store/images/truck.svg')}}" alt="Image" class="imf-fluid">
+                                <img src="{{asset('images/truck.svg')}}" alt="Image" class="imf-fluid">
                             </div>
                             <h3>Fast &amp; Free Shipping</h3>
                             <p>Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam vulputate.</p>
@@ -81,7 +81,7 @@
                     <div class="col-6 col-md-6">
                         <div class="feature">
                             <div class="icon">
-                                <img src="{{asset('furni-store/images/bag.svg')}}" alt="Image" class="imf-fluid">
+                                <img src="{{asset('images/bag.svg')}}" alt="Image" class="imf-fluid">
                             </div>
                             <h3>Easy to Shop</h3>
                             <p>Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam vulputate.</p>
@@ -91,7 +91,7 @@
                     <div class="col-6 col-md-6">
                         <div class="feature">
                             <div class="icon">
-                                <img src="{{asset('furni-store/images/support.svg')}}" alt="Image" class="imf-fluid">
+                                <img src="{{asset('images/support.svg')}}" alt="Image" class="imf-fluid">
                             </div>
                             <h3>24/7 Support</h3>
                             <p>Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam vulputate.</p>
@@ -101,7 +101,7 @@
                     <div class="col-6 col-md-6">
                         <div class="feature">
                             <div class="icon">
-                                <img src="{{asset('furni-store/images/return.svg')}}" alt="Image" class="imf-fluid">
+                                <img src="{{asset('images/return.svg')}}" alt="Image" class="imf-fluid">
                             </div>
                             <h3>Hassle Free Returns</h3>
                             <p>Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam vulputate.</p>
@@ -113,7 +113,7 @@
 
             <div class="col-lg-5">
                 <div class="img-wrap">
-                    <img src="{{asset('furni-store/images/why-choose-us-img.jpg')}}" alt="Image" class="img-fluid">
+                    <img src="{{asset('images/why-choose-us-img.jpg')}}" alt="Image" class="img-fluid">
                 </div>
             </div>
 
@@ -128,9 +128,9 @@
         <div class="row justify-content-between">
             <div class="col-lg-7 mb-5 mb-lg-0">
                 <div class="imgs-grid">
-                    <div class="grid grid-1"><img src="{{asset('furni-store/images/img-grid-1.jpg')}}" alt="Untree.co"></div>
-                    <div class="grid grid-2"><img src="{{asset('furni-store/images/img-grid-2.jpg')}}" alt="Untree.co"></div>
-                    <div class="grid grid-3"><img src="{{asset('furni-store/images/img-grid-3.jpg')}}" alt="Untree.co"></div>
+                    <div class="grid grid-1"><img src="{{asset('images/img-grid-1.jpg')}}" alt="Untree.co"></div>
+                    <div class="grid grid-2"><img src="{{asset('images/img-grid-2.jpg')}}" alt="Untree.co"></div>
+                    <div class="grid grid-3"><img src="{{asset('images/img-grid-3.jpg')}}" alt="Untree.co"></div>
                 </div>
             </div>
             <div class="col-lg-5 ps-lg-5">
@@ -206,7 +206,7 @@
 
                                         <div class="author-info">
                                             <div class="author-pic">
-                                                <img src="{{asset('furni-store/images/person-1.png')}}" alt="Maria Jones" class="img-fluid">
+                                                <img src="{{asset('images/person-1.png')}}" alt="Maria Jones" class="img-fluid">
                                             </div>
                                             <h3 class="font-weight-bold">Maria Jones</h3>
                                             <span class="position d-block mb-3">CEO, Co-Founder, XYZ Inc.</span>
@@ -243,7 +243,7 @@
 
             <div class="col-12 col-sm-6 col-md-4 mb-4 mb-md-0">
                 <div class="post-entry">
-                    <a href="#" class="post-thumbnail"><img src="{{asset('furni-store/images/post-1.jpg')}}" alt="Image" class="img-fluid"></a>
+                    <a href="#" class="post-thumbnail"><img src="{{asset('images/post-1.jpg')}}" alt="Image" class="img-fluid"></a>
                     <div class="post-content-entry">
                         <h3><a href="#">First Time Home Owner Ideas</a></h3>
                         <div class="meta">
@@ -255,7 +255,7 @@
 
             <div class="col-12 col-sm-6 col-md-4 mb-4 mb-md-0">
                 <div class="post-entry">
-                    <a href="#" class="post-thumbnail"><img src="{{asset('furni-store/images/post-2.jpg')}}" alt="Image" class="img-fluid"></a>
+                    <a href="#" class="post-thumbnail"><img src="{{asset('images/post-2.jpg')}}" alt="Image" class="img-fluid"></a>
                     <div class="post-content-entry">
                         <h3><a href="#">How To Keep Your Furniture Clean</a></h3>
                         <div class="meta">
@@ -267,7 +267,7 @@
 
             <div class="col-12 col-sm-6 col-md-4 mb-4 mb-md-0">
                 <div class="post-entry">
-                    <a href="#" class="post-thumbnail"><img src="{{asset('furni-store/images/post-3.jpg')}}" alt="Image" class="img-fluid"></a>
+                    <a href="#" class="post-thumbnail"><img src="{{asset('images/post-3.jpg')}}" alt="Image" class="img-fluid"></a>
                     <div class="post-content-entry">
                         <h3><a href="#">Small Space Furniture Apartment Ideas</a></h3>
                         <div class="meta">

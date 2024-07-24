@@ -22,7 +22,7 @@
             @auth()
             <ul class="custom-navbar-cta navbar-nav mb-2 mb-md-0 ms-5">
                 <li>
-                    {{-- <a class="nav-link" href="#"><img src="{{asset('furni-store/images/user.svg')}}"></a> --}}
+                    {{-- <a class="nav-link" href="#"><img src="{{asset('images/user.svg')}}"></a> --}}
                     <div class="dropdown text-end">
                         <a href="#" class="d-block link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                           <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle">
@@ -36,7 +36,7 @@
                         </ul>
                       </div>
                 </li>
-                <li><a class="nav-link" href="cart.html"><img src="{{asset('furni-store/images/cart.svg')}}"></a></li>
+                <li><a class="nav-link" href="cart.html"><img src="{{asset('images/cart.svg')}}"></a></li>
             </ul>
             @endauth
             @guest()
