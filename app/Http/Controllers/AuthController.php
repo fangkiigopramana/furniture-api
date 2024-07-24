@@ -26,42 +26,48 @@ class AuthController extends Controller
         if (Auth::attempt($validated)) {
             $request->session()->regenerate();
             Alert::success('Login Success', 'Welcome');
-            return redirect()->route('furni.home');
+            return redirect()->route('home');
         };        
         Alert::error('Login Failed', 'Please check your credentials and try again');
         return redirect()->back()->withInput();
     }
-    
+
     public function store(Request $request){
         $validated = Validator::make($request->all(),[
             'name' => 'required',
             'email' => 'required|email:rfc,dns|unique:users,email',
             'password' => 'required|min:8',
         ]);
+
         if ($validated->fails()) {
             return redirect()->back()
                              ->withErrors($validated)
                              ->withInput();
         }
-    
+
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'name' => $request->name,
             'password' => Hash::make($request->password),
         ]);
+        
         $user->assignRole('buyer');
-    
+
         Auth::login($user);    
         $request->session()->regenerate();
         Alert::success('Registration Successful', 'Welcome');
-        return redirect()->route('furni.home');
+        return redirect()->route('home');
     }
-    
+
     public function logout(){
         Auth::logout();
         Alert::success('Logout Successful', 'See you again');
         return redirect()->route('login');
     }
 
+    public function getAllUser(){
+        $users = User::all();
+        return $users->json_encode();
+    }
 }

@@ -22,15 +22,12 @@ Route::controller(FurniStoreController::class)->group(function (){
 });
 
 Route::controller(AuthController::class)->group(function(){
-    Route::get('/login','form')->name('login')->middleware('guest');
-    Route::get('/register','form')->name('register')->middleware('guest');
-
-    Route::middleware(['auth'])->group(function(){
-        Route::get('/logout','logout')->name('logout');
-        Route::post('/validate','validate')->name('login.validate');
+    Route::middleware('guest')->group(function(){
+        Route::get('/login','form')->name('login');
+        Route::get('/register','form')->name('register');
         Route::post('/store','store')->name('register.store');
+        Route::post('/validate','validate')->name('login.validate');
     });
+    Route::get('/logout','logout')->name('logout')->middleware('auth');
+
 });
-
-
-
