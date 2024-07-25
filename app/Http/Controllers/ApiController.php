@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Http\Resources\UserResource;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -53,16 +54,18 @@ class ApiController extends Controller
      */
     public function show(string $id)
     {
-        $user = User::find($id);
+        // $user = User::find($id);
 
-        if (!$user) {
-            return response()->json(null, 404);
-        }
-        return response()->json([
-            'id' => $user->id,
-            'name' => $user->name,
-            'email' => $user->email
-        ]);
+        // if (!$user) {
+        //     return response()->json(null, 404);
+        // }
+        // return response()->json([
+        //     'id' => $user->id,
+        //     'name' => $user->name,
+        //     'email' => $user->email
+        // ]);
+
+        return new UserResource(User::findOrFail($id));
     }
 
     /**
