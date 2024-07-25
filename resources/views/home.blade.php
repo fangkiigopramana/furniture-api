@@ -159,7 +159,7 @@
             <div class="col-12 col-md-6 col-lg-3 mb-3 mb-lg-0">
                 <div class="product-item-sm d-flex">
                     <div class="thumbnail">
-                        <img src="{{$type['image_link']}}" alt="Image {{$type['type']}}" class="img-fluid">
+                        <img src="{{$type['image_link']}}" width="477" height="477" alt="Image {{$type['type']}}" class="img-fluid">
                     </div>
                     <div class="pt-3">
                         <h3>{{$type['type']}}</h3>
