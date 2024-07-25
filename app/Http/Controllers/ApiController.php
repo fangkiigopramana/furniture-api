@@ -30,7 +30,7 @@ class ApiController extends Controller
             'password' => 'required|min:6',
         ]);
 
-        if ($validator->fail()) {
+        if ($validator->fails()) {
             return response()->json($validator->errors(), 422);
         }
 
@@ -81,7 +81,7 @@ class ApiController extends Controller
             'email' => 'required|email:dns'
         ]);
 
-        if ($validator->fail()) {
+        if ($validator->fails()) {
             return response()->json($validator->errors(), 422);
         }
 
