@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Resources\UserResource;
+use App\Http\Resources\UserCollection;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -17,7 +18,9 @@ class ApiController extends Controller
      */
     public function index()
     {
-        return User::all();
+        // return User::all();
+        return new UserCollection(User::all());
+
     }
 
     /**
