@@ -86,15 +86,19 @@ class ApiController extends Controller
         }
 
         //jika berhasil
-        $user->name = $validator->input('name');
-        $user->email = $validator->input('email');
+        $user->name = $request['name'];
+        $user->email = $request['email'];
 
         $user->save();
 
         return response()->json([
-            'id' => $user->id,
-            'name' => $user->name,
-            'email' => $user->email
+            'status' => 200,
+            'message' => 'user updated',
+            'data' => [
+                'id' => $user->id,
+                'name' => $user->name,
+                'email' => $user->email
+            ]
         ]);
     }
 
@@ -103,6 +107,17 @@ class ApiController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $user = User::find($id);
+
+        if (!$user) {
+            return response()->json(null, 404);
+        }
+
+        $user->delete();
+
+        return response()->json([
+            'status' => 204,
+            'message' => 'user deleted'
+        ], 204);
     }
 }
