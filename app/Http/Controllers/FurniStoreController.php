@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Services\FurniApiService;
+use App\Models\User;
 
 class FurniStoreController extends Controller
 {
@@ -27,7 +28,8 @@ class FurniStoreController extends Controller
                 $item['img_link'] = updateImageLink($item['img_link']);
             }
         }
-        print_r($products);
+        // print_r($products);
+        dd(User::all());
 
 
         return view('home',compact('products','types','best_products'));
