@@ -6,3 +6,4 @@ use App\Models\User;
 use App\Http\Controllers\ApiController;
 
 Route::resource('user',ApiController::class);
+
