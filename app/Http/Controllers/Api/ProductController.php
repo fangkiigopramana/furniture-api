@@ -62,7 +62,7 @@ class ProductController extends Controller
                 'error' => 'Product with ID `'.$id.'` not found.',
             ], 404);
         }
-        return new ProductTypeResource($product);
+        return new ProductResource($product);
     }
 
     public function update(Request $request, string $id)
