@@ -28,8 +28,6 @@ class FurniStoreController extends Controller
                 $item['img_link'] = updateImageLink($item['img_link']);
             }
         }
-        // print_r($products);
-        dd(User::all());
 
 
         return view('home',compact('products','types','best_products'));

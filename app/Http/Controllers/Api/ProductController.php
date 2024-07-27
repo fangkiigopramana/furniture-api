@@ -3,62 +3,127 @@
 namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Models\Product;
+use App\Models\ProductType;
+use App\Http\Resources\ProductResource;
 
 class ProductController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        //
+        $products = Product::all();
+        return [
+            "status" => 201,
+            "datas" => ProductResource::collection($products)
+        ];
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(),[
+            'type' => 'required|exists:type_products,name',
+            'name' => 'required|unique:products,name',
+            'description' => 'required',
+            'price' => 'required',
+            'img_link' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'status'    => 'failed',
+                'message'   => 'Product created failed',
+                'errors'    => $validator->errors()
+            ], 422);
+        }
+
+        $new_product = new Product();
+        $new_product->type_id = TypeProduct::select('id')->where('name', $request->input('type'))->first()->id;
+        $new_product->name = $request->input('name');
+        $new_product->description = $request->input('description');
+        $new_product->price = $request->input('price');
+        $new_product->img_link = $request->input('img_link');
+        $new_product->save();
+
+        return response()->json([
+            'status'    => 'success',
+            'message'   => 'Product created successfully',
+            'data'      => new ProductResource($new_product)
+        ]);
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(string $id)
     {
-        //
+        $product = Product::find($id);
+
+        if (is_null($product)) {
+            return response()->json([
+                'status' => 404,
+                'error' => 'Product with ID `'.$id.'` not found.',
+            ], 404);
+        }
+        return new TypeResource($product);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, string $id)
     {
-        //
+        $product = Product::find($id);
+
+        if (is_null($product)) {
+            return response()->json([
+                'status'    => 'failed',
+                'message'   => 'Product update failed',
+                'errors'    => 'Product not found'
+            ], 404);
+        }
+
+        $validator = Validator::make($request->all(),[
+            'type' => 'exists:type_products,name',
+            'name' => 'unique:products,name',
+            'description' =>'required',
+            'price' =>'required',
+            'img_link' =>'required',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+               'status'    => 'failed',
+               'message'   => 'Product updated failed',
+                'errors'    => $validator->errors()
+            ], 422);
+        }
+
+        $product->type_id = TypeProduct::select('id')->where('name', $request->input('type'))->first()->id;
+        $product->name = $request->input('name');
+        $product->description = $request->input('description');
+        $product->price = $request->input('price');
+        $product->img_link = $request->input('img_link');
+        $product->save();
+
+        return response()->json([
+            'status'    => 'success',
+            'message'   => 'Product updated successfully',
+            'data'      => new ProductResource($product)
+        ]);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(string $id)
     {
-        //
+        $product = Product::find($id);
+
+        if (is_null($product)) {
+            return response()->json([
+                'status'    => 'failed',
+                'message'   => 'Product deleted failed',
+                'errors'    => 'Product not found'
+            ], 404);
+        }
+
+        $product->delete();
+
+        return response()->json([
+            'status'    => 'success',
+            'message'   => 'Product deleted succesfully'
+        ]);
     }
 }

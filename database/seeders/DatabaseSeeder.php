@@ -5,7 +5,7 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 use App\Models\Product;
-use App\Models\Type;
+use App\Models\ProductType;
 use App\Models\User;
 use App\Services\FurniApiService;
 use Database\Seeders\AssignPermissionSeeder;
@@ -37,7 +37,7 @@ class DatabaseSeeder extends Seeder
         $products = $furniApiService->getAllProduct();
 
         foreach ($types as $type) {
-            Type::create([
+            ProductType::create([
                 'name' => $type['type'],
             ]);
         }
@@ -50,7 +50,7 @@ class DatabaseSeeder extends Seeder
         }
 
         foreach ($products as $product) {
-            $type_id = Type::where('name', $product['type'])->first()->id;
+            $type_id = ProductType::where('name', $product['type'])->first()->id;
             Product::create([
                 'type_id' => $type_id,
                 'name' => $product['name'],
