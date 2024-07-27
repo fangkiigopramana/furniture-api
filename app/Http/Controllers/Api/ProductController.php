@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Api;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Product;
-use App\Models\ProductType;
+use App\Models\ProductType; 
 use App\Http\Resources\ProductResource;
 
 class ProductController extends Controller
@@ -38,7 +38,7 @@ class ProductController extends Controller
         }
 
         $new_product = new Product();
-        $new_product->type_id = TypeProduct::select('id')->where('name', $request->input('type'))->first()->id;
+        $new_product->type_id = ProductType::select('id')->where('name', $request->input('type'))->first()->id;
         $new_product->name = $request->input('name');
         $new_product->description = $request->input('description');
         $new_product->price = $request->input('price');
@@ -62,7 +62,7 @@ class ProductController extends Controller
                 'error' => 'Product with ID `'.$id.'` not found.',
             ], 404);
         }
-        return new TypeResource($product);
+        return new ProductTypeResource($product);
     }
 
     public function update(Request $request, string $id)
@@ -93,7 +93,7 @@ class ProductController extends Controller
             ], 422);
         }
 
-        $product->type_id = TypeProduct::select('id')->where('name', $request->input('type'))->first()->id;
+        $product->type_id = ProductType::select('id')->where('name', $request->input('type'))->first()->id;
         $product->name = $request->input('name');
         $product->description = $request->input('description');
         $product->price = $request->input('price');
