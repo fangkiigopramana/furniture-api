@@ -23,7 +23,7 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(),[
-            'type' => 'required|exists:type_products,name',
+            'type' => 'required|exists:product_types,name',
             'name' => 'required|unique:products,name',
             'description' => 'required',
             'price' => 'required',
@@ -79,7 +79,7 @@ class ProductController extends Controller
         }
 
         $validator = Validator::make($request->all(),[
-            'type' => 'exists:type_products,name',
+            'type' => 'exists:product_types,name',
             'name' => 'unique:products,name',
             'description' =>'required',
             'price' =>'required',
