@@ -1,7 +1,6 @@
 @extends('layouts.app')
 @section('style')
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
-
 @endsection
 @section('content')
 <!-- Start Hero Section -->
@@ -153,19 +152,17 @@
 <!-- Start Popular Product -->
 <div class="popular-product">
     <div class="container">
-        <div class="row">
-
-            @foreach ( $types as $type )	
-            <div class="col-12 col-md-6 col-lg-3 mb-3 mb-lg-0">
-                <div class="product-item-sm d-flex">
-                    <div class="thumbnail">
-                        <img src="{{$type['image_link']}}" width="477" height="477" alt="Image {{$type['type']}}" class="img-fluid">
+        <h2 class="section-title mb-4">Product Types</h2>
+        <div class="row my-5">
+            
+            @foreach ($types as $type)
+            <div class="col-3 col-md-3">
+                <div class="feature">
+                    <div class="mb-3">
+                        <img src="https://api.iconify.design/bi/{{$loop->iteration}}-circle-fill.svg?width=36&height=36" alt="Image" class="img-fluid">
                     </div>
-                    <div class="pt-3">
-                        <h3>{{$type['type']}}</h3>
-                        <p>Donec facilisis quam ut purus rutrum lobortis. Donec vitae odio </p>
-                        <p><a href="#">Read More</a></p>
-                    </div>
+                    <h3 class="fw-bolder">{{Str::apa($type['name'])}}</h3>
+                    <p>Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam vulputate.</p>
                 </div>
             </div>
             @endforeach

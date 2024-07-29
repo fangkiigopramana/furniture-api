@@ -3,49 +3,25 @@
 namespace App\Services;
 
 use Exception;
+use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Http;
 
 class FurniApiService
 {
     public function getAllProduct()
     {
-        $url = config('app.furni_api_url') . '/data';
-        $response = Http::get($url);
-
-        if ($response->successful()) {
-            return $response->json()['payload'];
-        } else {
-            throw new Exception('Failed to fetch all product from API');
-        }
+        $client = new Client();
+        $response = $client->request('GET', 'http://kihub-app.test/api/products');
+        $data = json_decode($response->getBody()->getContents(), true);
+        return $data;
     }
 
     public function getAllType()
     {
-        $url = config('app.furni_api_url') . '/data';
-        $response = Http::get($url);
-    
-        if ($response->successful()) {
-            $products = $response->json()['payload'];
-    
-            $uniqueTypes = array_reduce($products, function ($carry, $product) {
-                $type = $product['type'];
-                if (!isset($carry[$type])) {
-                    $carry[$type] = $product;
-                }
-                return $carry;
-            }, []);
-    
-            $formattedTypes = array_map(function ($product) {
-                return [
-                    'type' => $product['type'],
-                    'image_link' => $product['img_link'],
-                ];
-            }, $uniqueTypes);
-    
-            return $formattedTypes;
-        } else {
-            throw new Exception('Failed to fetch all type from API');
-        }
+        $client = new Client();
+        $response = $client->request('GET', 'http://kihub-app.test/api/types');
+        $data = json_decode($response->getBody()->getContents(), true);
+        return $data;
     }
     
 

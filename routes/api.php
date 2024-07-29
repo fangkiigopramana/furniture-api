@@ -5,15 +5,18 @@ use Illuminate\Support\Facades\Route;
 use App\Models\User;
 use App\Http\Controllers\ApiController;
 use App\Http\Controllers\Api\ProductController;
-use App\Http\Controllers\Api\AuthApiController;
+use App\Http\Controllers\Api\ApiAuthController;
 use App\Http\Controllers\Api\ProductTypeController;
 
 Route::resource('users',ApiController::class);
-Route::group(['middleware' => 'api', 'prefix' => 'auth'], function ($router) {
-    Route::post('login', [AuthApiController::class, 'login']);
-    Route::post('logout', [AuthApiController::class,'logout']);
-    Route::post('refresh', [AuthApiController::class,'refresh']);
-    Route::post('me', [AuthApiController::class,'me']);
+
+Route::post('login', [ApiAuthController::class, 'login']);
+Route::get('products', [ProductController::class, 'index']);
+Route::get('products/{id}', [ProductController::class, 'show']);
+Route::get('types', [ProductTypeController::class, 'index']);
+Route::get('types/{id}', [ProductTypeController::class, 'show']);
+
+Route::group(['middleware' => 'jwt.auth'], function () {
+    Route::resource('products', ProductController::class)->except('index','show');
+    Route::resource('types', ProductTypeController::class)->except('index','show');
 });
-Route::resource('products',ProductController::class);
-Route::resource('types',ProductTypeController::class);

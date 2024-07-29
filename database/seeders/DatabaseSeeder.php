@@ -43,9 +43,9 @@ class DatabaseSeeder extends Seeder
         }
 
         function updateImageLink($url) {
-            $url = preg_replace('/&w=\d+/', '', $url); // Menghapus parameter w
-            $url = preg_replace('/&q=\d+/', '', $url); // Menghapus parameter q
-            $url .= "&w=477&h=477"; // Menambahkan parameter w=477 dan h=477
+            $url = preg_replace('/&w=\d+/', '', $url);
+            $url = preg_replace('/&q=\d+/', '', $url);
+            $url .= "&w=477&h=477";
             return $url;
         }
 
