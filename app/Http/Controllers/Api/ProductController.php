@@ -13,7 +13,7 @@ class ProductController extends Controller
 {
     public function index()
     {
-        $products = Product::all();
+        $products = Product::select('type_id','name','description','price','img_link')->get();
         return [
             "status" => 201,
             "datas" => ProductResource::collection($products)

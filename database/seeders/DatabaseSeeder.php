@@ -30,34 +30,7 @@ class DatabaseSeeder extends Seeder
             RoleSeeder::class,
             AssignPermissionSeeder::class,
             UserSeeder::class,
+            FetchApiSeeder::class,
         ]);
-
-        $furniApiService = new FurniApiService();
-        $types = $furniApiService->getAllType();
-        $products = $furniApiService->getAllProduct();
-
-        foreach ($types as $type) {
-            ProductType::create([
-                'name' => $type['type'],
-            ]);
-        }
-
-        function updateImageLink($url) {
-            $url = preg_replace('/&w=\d+/', '', $url);
-            $url = preg_replace('/&q=\d+/', '', $url);
-            $url .= "&w=477&h=477";
-            return $url;
-        }
-
-        foreach ($products as $product) {
-            $type_id = ProductType::where('name', $product['type'])->first()->id;
-            Product::create([
-                'type_id' => $type_id,
-                'name' => $product['name'],
-                'description' => $product['description'],
-                'price' => $product['price'],
-                'img_link' => updateImageLink($product['img_link']),
-            ]);
-        }
     }
 }

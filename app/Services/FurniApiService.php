@@ -11,7 +11,7 @@ class FurniApiService
     public function getAllProduct()
     {
         $client = new Client();
-        $response = $client->request('GET', 'http://kihub-app.test/api/products');
+        $response = $client->request('GET', 'http://furni-store.kihub.net/api/products');
         $data = json_decode($response->getBody()->getContents(), true);
         return $data;
     }
@@ -19,7 +19,7 @@ class FurniApiService
     public function getAllType()
     {
         $client = new Client();
-        $response = $client->request('GET', 'http://kihub-app.test/api/types');
+        $response = $client->request('GET', 'http://furni-store.kihub.net/api/types');
         $data = json_decode($response->getBody()->getContents(), true);
         return $data;
     }

@@ -12,7 +12,11 @@ class ProductTypeController extends Controller
 {
     public function index()
     {
-        return ProductTypeResource::collection(ProductType::all());
+        $types = ProductType::select('id','name')->get();
+        return [
+            'status' => 201,
+            'datas' => ProductTypeResource::collection($types)
+        ];
     }
 
     public function store(Request $request)
