@@ -13,9 +13,13 @@ class ProductController extends Controller
 {
     public function index(Request $request)
     {
-        $limit = $request->get('sum', null);
+        $limit = $request->get('limit', null);
+        $type = $request->get('type', null);
 
-        $products = Product::select('type_id', 'name', 'description', 'price', 'img_link')
+        $products = Product::select('id','type', 'name', 'description', 'price', 'img_link')
+            ->when($type, function ($query, $type) {
+                return $query->where('type', $type);
+            })
             ->when($limit, function ($query, $limit) {
                 return $query->take($limit);
             })
@@ -46,7 +50,7 @@ class ProductController extends Controller
         }
 
         $new_product = new Product();
-        $new_product->type_id = ProductType::select('id')->where('name', $request->input('type'))->first()->id;
+        $new_product->type = $request->input('type');
         $new_product->name = $request->input('name');
         $new_product->description = $request->input('description');
         $new_product->price = $request->input('price');
@@ -101,7 +105,7 @@ class ProductController extends Controller
             ], 422);
         }
 
-        $product->type_id = ProductType::select('id')->where('name', $request->input('type'))->first()->id;
+        $product->type = $request->input('type');
         $product->name = $request->input('name');
         $product->description = $request->input('description');
         $product->price = $request->input('price');

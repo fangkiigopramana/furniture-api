@@ -17,9 +17,12 @@ use App\Http\Controllers\FurniStoreController;
 |
 */
 
-Route::controller(FurniStoreController::class)->group(function (){
-    Route::get('/','home')->name('home');
-});
+Route::get('/',function(){
+    return [
+        'status' => 'success',
+        'message' => 'please access /api to get all route api'
+    ];
+})->name('home');
 
 Route::controller(AuthController::class)->group(function(){
     Route::middleware('guest')->group(function(){

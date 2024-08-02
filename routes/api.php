@@ -1,8 +1,6 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Models\User;
 use App\Http\Controllers\ApiController;
 use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\Api\ApiAuthController;
@@ -17,6 +15,6 @@ Route::get('types', [ProductTypeController::class, 'index']);
 Route::get('types/{id}', [ProductTypeController::class, 'show']);
 
 Route::group(['middleware' => 'jwt.auth'], function () {
-    Route::resource('products', ProductController::class)->except('index','show');
-    Route::resource('types', ProductTypeController::class)->except('index','show');
+    Route::apiResource('products', ProductController::class)->except('index','show');
+    Route::apiResource('types', ProductTypeController::class)->except('index','show');
 });

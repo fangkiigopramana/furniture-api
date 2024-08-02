@@ -12,7 +12,7 @@ class ProductTypeController extends Controller
 {
     public function index()
     {
-        $types = ProductType::select('id','name')->get();
+        $types = ProductType::select('id','name','img_link')->get();
         return [
             'status' => 201,
             'datas' => ProductTypeResource::collection($types)
@@ -23,6 +23,7 @@ class ProductTypeController extends Controller
     {
         $validator = Validator::make($request->all(),[
             'name' => 'required|unique:product_types,name',
+            'img_link' => 'required',
         ]);
 
         if ($validator->fails()) {
@@ -35,6 +36,7 @@ class ProductTypeController extends Controller
 
         $new_type = new ProductType();
         $new_type->name = $request->input('name');
+        $new_type->img_link = $request->input('img_link');
         $new_type->save();
 
         return response()->json([
@@ -43,6 +45,7 @@ class ProductTypeController extends Controller
             'data'      => [
                 "id"    =>  $new_type->id,
                 "name"    =>  $new_type->name,
+                "img_link"    =>  $new_type->img_link,
                 "updated_at"    =>  $new_type->updated_at,
                 "created_at"    =>  $new_type->created_at,
             ]
@@ -77,6 +80,7 @@ class ProductTypeController extends Controller
 
         $validator = Validator::make($request->all(),[
             'name' => 'required|unique:product_types,name',
+            'img_link' => 'required',
         ]);
 
         if ($validator->fails()) {
@@ -88,6 +92,7 @@ class ProductTypeController extends Controller
         }
 
         $type->name = $request->input('name');
+        $type->img_link = $request->input('img_link');
         $type->save();
 
         return response()->json([
