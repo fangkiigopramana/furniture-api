@@ -11,13 +11,20 @@ use App\Models\ProductType;
 
 class ProductController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $products = Product::select('type_id','name','description','price','img_link')->get();
-        return [
-            "status" => 201,
-            "datas" => ProductResource::collection($products)
-        ];
+        $limit = $request->get('sum', null);
+
+        $products = Product::select('type_id', 'name', 'description', 'price', 'img_link')
+            ->when($limit, function ($query, $limit) {
+                return $query->take($limit);
+            })
+            ->get();
+
+        return response()->json([
+            'status' => 201,
+            'datas' => ProductResource::collection($products)
+        ]);
     }
 
     public function store(Request $request)
