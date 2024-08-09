@@ -17,12 +17,28 @@ use App\Http\Controllers\FurniStoreController;
 |
 */
 
-Route::get('/',function(){
-    return [
+Route::get('{any}',function($any){
+    return 
+    [
         'status' => 'success',
-        'message' => 'please access /api to get all route api'
+        'message' => [
+            "maintainer"=> "Fangki Igo Pramana",
+            "source"=>  "https://github.com/fangkiigopramana/furniture-api",
+            "endpoints"=> [
+            "all_product"=> "GET, https://https://furni-store.kihub.net/api/products",
+            "all_types"=> "GET, https://https://furni-store.kihub.net/api/products/data/types",
+            "by_type"=> [
+                "request"=> "GET, https://furni-store.kihub.net/api/products?type=type_name",
+                "example" => "GET, https://furni-store.kihub.net/api/products?type=decoration"
+            ],
+            "by_product_id"=> [
+                "request"=> "GET, https://https://furni-store.kihub.net/api/products/product_id",
+                "example"=> "GET, https://https://furni-store.kihub.net/api/products/3"
+            ]
+            ]
+        ]
     ];
-})->name('home');
+})->where('any', '.*')->name('home');
 
 Route::controller(AuthController::class)->group(function(){
     Route::middleware('guest')->group(function(){
