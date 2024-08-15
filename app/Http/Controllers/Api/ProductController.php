@@ -15,6 +15,7 @@ class ProductController extends Controller
     {
         $limit = $request->get('limit', null);
         $type = $request->get('type', null);
+        $name = $request->get('name', null);
 
         $products = Product::select('id','type', 'name', 'description', 'price', 'img_link')
             ->when($type, function ($query, $type) {
@@ -22,6 +23,9 @@ class ProductController extends Controller
             })
             ->when($limit, function ($query, $limit) {
                 return $query->take($limit);
+            })
+            ->when($name, function ($query, $name) {
+                return $query->where('name', 'like', '%' . $name . '%');
             })
             ->get();
 

@@ -27,6 +27,9 @@ Route::get('{any}',function($any){
             "endpoints"=> [
             "all_product"=> "GET, https://https://furni-store.kihub.net/api/products",
             "all_types"=> "GET, https://https://furni-store.kihub.net/api/products/data/types",
+            "by_name"=> [
+                "request"=> "GET, https://furni-store.kihub.net/api/products?name=product_name"
+            ],
             "by_type"=> [
                 "request"=> "GET, https://furni-store.kihub.net/api/products?type=type_name",
                 "example" => "GET, https://furni-store.kihub.net/api/products?type=decoration"
