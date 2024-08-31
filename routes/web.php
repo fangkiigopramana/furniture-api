@@ -25,18 +25,18 @@ Route::get('/api', function () {
                 "maintainer" => "Fangki Igo Pramana",
                 "source" =>  "https://github.com/fangkiigopramana/furniture-api",
                 "endpoints" => [
-                    "all_product" => "GET, https://https://furni-store.kihub.net/api/products",
-                    "all_types" => "GET, https://https://furni-store.kihub.net/api/products/data/types",
+                    "all_product" => "GET, https://https://furni-api.kihub.net/api/products",
+                    "all_types" => "GET, https://https://furni-api.kihub.net/api/products/data/types",
                     "by_name" => [
-                        "request" => "GET, https://furni-store.kihub.net/api/products?name=product_name"
+                        "request" => "GET, https://furni-api.kihub.net/api/products?name=product_name"
                     ],
                     "by_type" => [
-                        "request" => "GET, https://furni-store.kihub.net/api/products?type=type_name",
-                        "example" => "GET, https://furni-store.kihub.net/api/products?type=decoration"
+                        "request" => "GET, https://furni-api.kihub.net/api/products?type=type_name",
+                        "example" => "GET, https://furni-api.kihub.net/api/products?type=decoration"
                     ],
                     "by_product_id" => [
-                        "request" => "GET, https://https://furni-store.kihub.net/api/products/product_id",
-                        "example" => "GET, https://https://furni-store.kihub.net/api/products/3"
+                        "request" => "GET, https://https://furni-api.kihub.net/api/products/product_id",
+                        "example" => "GET, https://https://furni-api.kihub.net/api/products/3"
                     ]
                 ]
             ]
