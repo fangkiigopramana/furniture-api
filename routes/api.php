@@ -9,6 +9,7 @@ use App\Http\Controllers\Api\ProductTypeController;
 Route::resource('users',ApiController::class);
 
 Route::post('login', [ApiAuthController::class, 'login']);
+Route::post('register', [ApiAuthController::class, 'store']);
 Route::get('products', [ProductController::class, 'index']);
 Route::get('products/{id}', [ProductController::class, 'show']);
 Route::get('types', [ProductTypeController::class, 'index']);

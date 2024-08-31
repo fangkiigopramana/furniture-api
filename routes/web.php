@@ -43,17 +43,6 @@ Route::get('/api', function () {
         ];
 })->name('home');
 
-
-Route::controller(AuthController::class)->group(function () {
-    Route::middleware('guest')->group(function () {
-        Route::get('/login', 'form')->name('login');
-        Route::get('/register', 'form')->name('register');
-        Route::post('/store', 'store')->name('register.store');
-        Route::post('/validate', 'validate')->name('login.validate');
-    });
-    Route::get('/logout', 'logout')->name('logout')->middleware('auth');
-});
-
 Route::get('{any}', function () {
     return redirect()->route('home');
-});
+})->where('any', '.*');
