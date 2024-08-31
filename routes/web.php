@@ -17,7 +17,7 @@ use App\Http\Controllers\FurniStoreController;
 |
 */
 
-Route::get('/api', function ($any) {
+Route::get('/api', function () {
     return
         [
             'status' => 'success',
@@ -44,11 +44,6 @@ Route::get('/api', function ($any) {
 })->name('home');
 
 
-Route::get('{any}', function ($id) {
-    return redirect()->route('home');
-});
-
-
 Route::controller(AuthController::class)->group(function () {
     Route::middleware('guest')->group(function () {
         Route::get('/login', 'form')->name('login');
@@ -57,4 +52,8 @@ Route::controller(AuthController::class)->group(function () {
         Route::post('/validate', 'validate')->name('login.validate');
     });
     Route::get('/logout', 'logout')->name('logout')->middleware('auth');
+});
+
+Route::get('{any}', function () {
+    return redirect()->route('home');
 });
