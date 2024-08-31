@@ -29,7 +29,8 @@ class FetchApiSeeder extends Seeder
         
         foreach ($products as $product) {
             Product::create([
-                'type' => $product['type'],
+                'seller_id' => 1,
+                'type' => $product[ 'type'],
                 'name' => $product['name'],
                 'description' => $product['description'],
                 'price' => $product['price'],

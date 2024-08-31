@@ -2,9 +2,6 @@
 
 namespace Database\Seeders;
 
-use Database\Seeders\AssignPermissionSeeder;
-use Database\Seeders\PermissionSeeder;
-use Database\Seeders\RoleSeeder;
 use Database\Seeders\UserSeeder;
 use Illuminate\Database\Seeder;
 
