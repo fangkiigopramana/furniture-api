@@ -4,11 +4,8 @@ namespace Database\Seeders;
 
 use App\Models\Product;
 use App\Models\ProductType;
-use App\Services\FurniApiService;
 use GuzzleHttp\Client;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\Http;
-use Illuminate\Support\Facades\Log;
 
 class FetchApiSeeder extends Seeder
 {

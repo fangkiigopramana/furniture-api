@@ -52,8 +52,6 @@ class AuthController extends Controller
             'password' => Hash::make($request->password),
         ]);
         
-        $user->assignRole('buyer');
-
         Auth::login($user);    
         $request->session()->regenerate();
         Alert::success('Registration Successful', 'Welcome');

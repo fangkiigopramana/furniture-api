@@ -17,39 +17,44 @@ use App\Http\Controllers\FurniStoreController;
 |
 */
 
-Route::get('{any}',function($any){
-    return 
-    [
-        'status' => 'success',
-        'message' => [
-            "maintainer"=> "Fangki Igo Pramana",
-            "source"=>  "https://github.com/fangkiigopramana/furniture-api",
-            "endpoints"=> [
-            "all_product"=> "GET, https://https://furni-store.kihub.net/api/products",
-            "all_types"=> "GET, https://https://furni-store.kihub.net/api/products/data/types",
-            "by_name"=> [
-                "request"=> "GET, https://furni-store.kihub.net/api/products?name=product_name"
-            ],
-            "by_type"=> [
-                "request"=> "GET, https://furni-store.kihub.net/api/products?type=type_name",
-                "example" => "GET, https://furni-store.kihub.net/api/products?type=decoration"
-            ],
-            "by_product_id"=> [
-                "request"=> "GET, https://https://furni-store.kihub.net/api/products/product_id",
-                "example"=> "GET, https://https://furni-store.kihub.net/api/products/3"
+Route::get('/api', function ($any) {
+    return
+        [
+            'status' => 'success',
+            'message' => [
+                "maintainer" => "Fangki Igo Pramana",
+                "source" =>  "https://github.com/fangkiigopramana/furniture-api",
+                "endpoints" => [
+                    "all_product" => "GET, https://https://furni-store.kihub.net/api/products",
+                    "all_types" => "GET, https://https://furni-store.kihub.net/api/products/data/types",
+                    "by_name" => [
+                        "request" => "GET, https://furni-store.kihub.net/api/products?name=product_name"
+                    ],
+                    "by_type" => [
+                        "request" => "GET, https://furni-store.kihub.net/api/products?type=type_name",
+                        "example" => "GET, https://furni-store.kihub.net/api/products?type=decoration"
+                    ],
+                    "by_product_id" => [
+                        "request" => "GET, https://https://furni-store.kihub.net/api/products/product_id",
+                        "example" => "GET, https://https://furni-store.kihub.net/api/products/3"
+                    ]
+                ]
             ]
-            ]
-        ]
-    ];
-})->where('any', '.*')->name('home');
+        ];
+})->name('home');
 
-Route::controller(AuthController::class)->group(function(){
-    Route::middleware('guest')->group(function(){
-        Route::get('/login','form')->name('login');
-        Route::get('/register','form')->name('register');
-        Route::post('/store','store')->name('register.store');
-        Route::post('/validate','validate')->name('login.validate');
+
+Route::get('{any}', function ($id) {
+    return redirect()->route('home');
+});
+
+
+Route::controller(AuthController::class)->group(function () {
+    Route::middleware('guest')->group(function () {
+        Route::get('/login', 'form')->name('login');
+        Route::get('/register', 'form')->name('register');
+        Route::post('/store', 'store')->name('register.store');
+        Route::post('/validate', 'validate')->name('login.validate');
     });
-    Route::get('/logout','logout')->name('logout')->middleware('auth');
-
+    Route::get('/logout', 'logout')->name('logout')->middleware('auth');
 });
