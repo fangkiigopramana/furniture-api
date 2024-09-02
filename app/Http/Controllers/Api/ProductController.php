@@ -16,8 +16,16 @@ class ProductController extends Controller
         $limit = $request->get('limit', null);
         $type = $request->get('type', null);
         $name = $request->get('name', null);
+        $seller = $request->get('seller', null);
 
         $products = Product::with('seller:id,name')
+            ->when($seller, function ($query, $seller) {
+                $seller_id = User::where('email', $seller)->first()->id ?? null;
+                if ($seller_id !== null ) {
+                    return $query->where('seller_id', $seller_id);
+                }
+                return $query->whereRaw('1=0');
+            })
             ->when($type, function ($query, $type) {
                 return $query->where('type', $type);
             })
@@ -55,7 +63,7 @@ class ProductController extends Controller
             ], 422);
         }
 
-        $seller_id = User::where('email',$request->input('seller_email'))->first()->id;
+        $seller_id = User::where('email', $request->input('seller_email'))->first()->id;
         $new_product = new Product();
         $new_product->seller_id = $seller_id;
         $new_product->type = $request->input('type');
