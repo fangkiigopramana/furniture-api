@@ -1,19 +1,36 @@
 <?php
 
-namespace Tests\Feature;
 
-// use Illuminate\Foundation\Testing\RefreshDatabase;
-use Tests\TestCase;
+test('returns a list of product', function () {
+    $response = $this->get('http://furni-api.test/api/products');
 
-class ExampleTest extends TestCase
-{
-    /**
-     * A basic test example.
-     */
-    public function test_the_application_returns_a_successful_response(): void
-    {
-        $response = $this->get('/');
+    $response->assertStatus(200)
+        ->assertJsonStructure([
+            'datas' => [
+                '*' => [
+                    "id",
+                    "seller_name",
+                    "type",
+                    "name",
+                    "description",
+                    "price",
+                    "img_link",
+                ]
+            ]
+        ]);
+});
 
-        $response->assertStatus(200);
-    }
-}
+test('returns a list of type', function () {
+    $response = $this->get('http://furni-api.test/api/products');
+
+    $response->assertStatus(200)
+        ->assertJsonStructure([
+            'datas' => [
+                '*' => [
+                    "id",
+                    "name",
+                    "img_link",
+                ]
+            ]
+        ]);
+});

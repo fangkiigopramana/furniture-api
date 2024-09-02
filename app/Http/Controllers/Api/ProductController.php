@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\ProductResource;
 use App\Models\Product;
-use App\Models\ProductType; 
+use App\Models\User;
 
 class ProductController extends Controller
 {
@@ -17,7 +17,7 @@ class ProductController extends Controller
         $type = $request->get('type', null);
         $name = $request->get('name', null);
 
-        $products = Product::select('id','type', 'name', 'description', 'price', 'img_link')
+        $products = Product::with('seller:id,name')
             ->when($type, function ($query, $type) {
                 return $query->where('type', $type);
             })
@@ -27,7 +27,8 @@ class ProductController extends Controller
             ->when($name, function ($query, $name) {
                 return $query->where('name', 'like', '%' . $name . '%');
             })
-            ->get();
+            ->get(['id', 'type', 'name', 'description', 'price', 'img_link', 'seller_id']);
+
 
         return response()->json([
             'status' => 201,
@@ -37,7 +38,8 @@ class ProductController extends Controller
 
     public function store(Request $request)
     {
-        $validator = Validator::make($request->all(),[
+        $validator = Validator::make($request->all(), [
+            'seller_email' => 'required|exists:users,email',
             'type' => 'required|exists:product_types,name',
             'name' => 'required|unique:products,name',
             'description' => 'required',
@@ -53,7 +55,9 @@ class ProductController extends Controller
             ], 422);
         }
 
+        $seller_id = User::firstOrFail('email',$request->input('seller_email'))->first()->id;
         $new_product = new Product();
+        $new_product->seller_id = $seller_id;
         $new_product->type = $request->input('type');
         $new_product->name = $request->input('name');
         $new_product->description = $request->input('description');
@@ -75,7 +79,7 @@ class ProductController extends Controller
         if (is_null($product)) {
             return response()->json([
                 'status' => 404,
-                'error' => 'Product with ID `'.$id.'` not found.',
+                'error' => 'Product with ID `' . $id . '` not found.',
             ], 404);
         }
         return new ProductResource($product);
@@ -93,18 +97,18 @@ class ProductController extends Controller
             ], 404);
         }
 
-        $validator = Validator::make($request->all(),[
+        $validator = Validator::make($request->all(), [
             'type' => 'exists:product_types,name',
             'name' => 'unique:products,name',
-            'description' =>'required',
-            'price' =>'required',
-            'img_link' =>'required',
+            'description' => 'required',
+            'price' => 'required',
+            'img_link' => 'required',
         ]);
 
         if ($validator->fails()) {
             return response()->json([
-               'status'    => 'failed',
-               'message'   => 'Product updated failed',
+                'status'    => 'failed',
+                'message'   => 'Product updated failed',
                 'errors'    => $validator->errors()
             ], 422);
         }
