@@ -55,7 +55,7 @@ class ProductController extends Controller
             ], 422);
         }
 
-        $seller_id = User::firstOrFail('email',$request->input('seller_email'))->first()->id;
+        $seller_id = User::where('email',$request->input('seller_email'))->first()->id;
         $new_product = new Product();
         $new_product->seller_id = $seller_id;
         $new_product->type = $request->input('type');
